@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Error from "./components/Error.js";
+import Loader from "./components/Loader.js";
 
 const initialState = {
   question: [],
@@ -39,8 +40,9 @@ export default function App() {
     <div className="App">
       <Header />
       <Main>
-        {status === "loading" && <Error>Loading...</Error>}
-        {status === "error" && <p>Failed to load questions.</p>}
+        {status === "loading" && <Loader />}
+        {status === "error" && <Error />}
+
         {status === "ready" && (
           <>
             <p>1/15</p>
