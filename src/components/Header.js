@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <header className="app-header">
-      <img src="" alt="React logo" />
+      <img src="logo512.png" alt="React logo" />
       <h1>The Ract Quiz</h1>
     </header>
   );
