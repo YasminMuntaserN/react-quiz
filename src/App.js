@@ -11,6 +11,7 @@ const initialState = {
   questions: [],
   //'Loading', 'error', 'ready', 'active', 'finished'
   status: "loading",
+  index: 0,
 };
 
 function reducer(state, action) {
@@ -19,6 +20,8 @@ function reducer(state, action) {
       return { ...state, questions: action.payload, status: "ready" };
     case "dataFailed":
       return { ...state, status: "error" };
+    case "start":
+      return { ...state, status: "active" };
     default:
       throw new Error("Action not supported");
   }
@@ -47,7 +50,9 @@ export default function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && <StartScreen numOfQuestions={numOfQuestions} />}
+        {status === "ready" && (
+          <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />
+        )}
         {status === "active" && <Question />}
       </Main>
     </div>
