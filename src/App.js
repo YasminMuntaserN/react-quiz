@@ -7,6 +7,7 @@ import Loader from "./components/Loader.js";
 import StartScreen from "./components/StartScreen.js";
 import Question from "./components/Question.js";
 import NextButton from "./components/NextButton.js";
+import Progress from "./components/Progress.js";
 
 const initialState = {
   questions: [],
@@ -32,7 +33,7 @@ function reducer(state, action) {
         answer: action.payload,
         points:
           action.payload === question.correctOption
-            ? state.points + question.pointsL
+            ? state.points + question.pointsx
             : state.points,
       };
     case "nextQuestion":
@@ -44,7 +45,7 @@ function reducer(state, action) {
 
 export default function App() {
   // const [state, dispatch] = useReducer(reducer, initialState);
-  const [{ questions, status, index, answer }, dispatch] = useReducer(
+  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -60,7 +61,10 @@ export default function App() {
   }, []);
 
   const numOfQuestions = questions.length;
-  console.log(numOfQuestions);
+  const maxPossiblePointes = questions.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  );
 
   return (
     <div className="App">
@@ -73,6 +77,13 @@ export default function App() {
         )}
         {status === "active" && (
           <>
+            <Progress
+              index={index}
+              numOfQuestions={numOfQuestions}
+              points={points}
+              maxPossiblePointes={maxPossiblePointes}
+              answer={answer}
+            />
             <Question
               question={questions[index]}
               answer={answer}

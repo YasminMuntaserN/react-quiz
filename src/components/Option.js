@@ -18,7 +18,7 @@ function Option({ question, dispatch, answer }) {
           onClick={() =>
             dispatch({
               type: "newAnswer",
-              plalyoad: index,
+              payload: index,
             })
           }
         >
