@@ -47,6 +47,8 @@ function reducer(state, action) {
         highScore:
           state.points > state.highScore ? state.points : state.highScore,
       };
+    case "Restarting":
+      return { ...initialState, questions: state.questions, status: "ready" };
     default:
       throw new Error("Action not supported");
   }
@@ -109,6 +111,7 @@ export default function App() {
             points={points}
             maxPossiblePointes={maxPossiblePointes}
             highScore={highScore}
+            dispatch={dispatch}
           />
         )}
       </Main>
