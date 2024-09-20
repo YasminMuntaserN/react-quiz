@@ -90,10 +90,15 @@ export default function App() {
               answer={answer}
               dispatch={dispatch}
             />
-            <NextButton dispatch={dispatch} answer={answer} />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              numOfQuestions={numOfQuestions}
+              index={index}
+            />
           </>
         )}
-        {status === "active" && (
+        {status === "finished" && (
           <FinishScreen
             points={points}
             maxPossiblePointes={maxPossiblePointes}
