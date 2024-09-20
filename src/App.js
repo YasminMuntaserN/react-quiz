@@ -11,6 +11,8 @@ import Progress from "./components/Progress.js";
 import FinishScreen from "./components/FinishScreen.js";
 import Footer from "./components/Footer.js";
 import Timer from "./components/Timer.js";
+
+const SECS_BER_QUESTION = 30;
 const initialState = {
   questions: [],
   //'Loading', 'error', 'ready', 'active', 'finished'
@@ -19,6 +21,7 @@ const initialState = {
   answer: null,
   points: 0,
   highScore: 0,
+  secondsRemaining: null,
 };
 
 function reducer(state, action) {
@@ -28,7 +31,11 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.question.length * SECS_BER_QUESTION,
+      };
     case "newAnswer":
       const question = state.questions.at(state.index);
       return {
@@ -50,6 +57,12 @@ function reducer(state, action) {
       };
     case "Restarting":
       return { ...initialState, questions: state.questions, status: "ready" };
+    case "tic":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? "finished" : state.status,
+      };
     default:
       throw new Error("Action not supported");
   }
@@ -57,8 +70,10 @@ function reducer(state, action) {
 
 export default function App() {
   // const [state, dispatch] = useReducer(reducer, initialState);
-  const [{ questions, status, index, answer, points, highScore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highScore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(function () {
     fetch("http://localhost:8000/questions")
@@ -100,7 +115,7 @@ export default function App() {
               dispatch={dispatch}
             />
             <Footer>
-              <Timer />
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
               <NextButton
                 dispatch={dispatch}
                 answer={answer}
