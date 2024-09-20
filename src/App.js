@@ -10,6 +10,7 @@ import NextButton from "./components/NextButton.js";
 import Progress from "./components/Progress.js";
 import FinishScreen from "./components/FinishScreen.js";
 import Footer from "./components/Footer.js";
+import Timer from "./components/Timer.js";
 const initialState = {
   questions: [],
   //'Loading', 'error', 'ready', 'active', 'finished'
