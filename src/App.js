@@ -92,6 +92,7 @@ export default function App() {
             <NextButton dispatch={dispatch} answer={answer} />
           </>
         )}
+        {status === "active" && ()}
       </Main>
     </div>
   );
