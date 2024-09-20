@@ -6,6 +6,7 @@ import Error from "./components/Error.js";
 import Loader from "./components/Loader.js";
 import StartScreen from "./components/StartScreen.js";
 import Question from "./components/Question.js";
+import NextButton from "./components/NextButton.js";
 
 const initialState = {
   questions: [],
@@ -35,7 +36,7 @@ function reducer(state, action) {
             : state.points,
       };
     case "nextQuestion":
-      return { ...state, index: state.index + 1 };
+      return { ...state, index: state.index + 1, answer: null };
     default:
       throw new Error("Action not supported");
   }
@@ -77,8 +78,7 @@ export default function App() {
               answer={answer}
               dispatch={dispatch}
             />
-
-            <NextButton disabled={disabled} />
+            <NextButton dispatch={dispatch} answer={answer} />
           </>
         )}
       </Main>
