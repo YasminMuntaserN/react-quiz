@@ -8,6 +8,7 @@ import StartScreen from "./components/StartScreen.js";
 import Question from "./components/Question.js";
 import NextButton from "./components/NextButton.js";
 import Progress from "./components/Progress.js";
+import FinishScreen from "./components/FinishScreen.js";
 
 const initialState = {
   questions: [],
@@ -92,7 +93,12 @@ export default function App() {
             <NextButton dispatch={dispatch} answer={answer} />
           </>
         )}
-        {status === "active" && ()}
+        {status === "active" && (
+          <FinishScreen
+            points={points}
+            maxPossiblePointes={maxPossiblePointes}
+          />
+        )}
       </Main>
     </div>
   );
