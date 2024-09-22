@@ -8,7 +8,7 @@ The React Quiz App is a web application designed to test users' knowledge of Rea
 - **JSON Server: Fake REST API for simulating backend data.**
 
 ## 🖼️ Screenshot
-![React Quiz](https://imgur.com/8XxqJyx.jpg)
+![React Quiz](https://imgur.com/gqQCMBB.gif)
 
 ## 🚀 Live Demo
- [React Quiz](https://sparkly-sorbet-e9bfe3.netlify.app)
+ [React Quiz](https://cerulean-brigadeiros-052ec0.netlify.app)
