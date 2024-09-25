@@ -66,7 +66,7 @@ function QuizProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   useEffect(function () {
-    fetch("http://localhost:8001/questions")
+    fetch("http://localhost:9000/questions")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
