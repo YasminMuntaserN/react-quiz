@@ -1,10 +1,7 @@
-function Progress({
-  index,
-  numOfQuestions,
-  points,
-  maxPossiblePointes,
-  answer,
-}) {
+import { useQuiz } from "../contexts/QuizContexts";
+function Progress() {
+  const { index, numOfQuestions, points, maxPossiblePointes, answer } =
+    useQuiz();
   return (
     <header className="progress">
       {/* if there is an answer the Number method will produce one and added it to the index and if not it will be added zero to the the index then nothing will be changed  */}
